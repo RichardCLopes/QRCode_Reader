@@ -32,7 +32,10 @@ class _ConfirmInsertionState extends State<ConfirmInsertion> {
             SizedBox(height: 40),
             RaisedButton(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 36),
-              child: Text('Confirmar'),
+              child: Text(
+                'Confirmar',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
               color: Colors.tealAccent,
               textColor: Colors.black,
               onPressed: () {
