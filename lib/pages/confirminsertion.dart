@@ -1,23 +1,72 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:leitor_qrcode/pages/qrcodepage.dart';
 
 class ConfirmInsertion extends StatefulWidget {
-  ConfirmInsertion({Key? key}) : super(key: key);
+  String dados = '';
+
+  ConfirmInsertion({Key? key, required this.dados}) : super(key: key);
 
   @override
-  _ConfirmInsertionSate createState() => _ConfirmInsertionSate();
+  _ConfirmInsertionState createState() => _ConfirmInsertionState();
 }
 
-class _ConfirmInsertionSate {
-  String ticket = '';
-  List<String> tickets = [];
-
+class _ConfirmInsertionState extends State<ConfirmInsertion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(centerTitle: true, title: Text('ALMOXARIFADO')),
       body: Container(
-        width: MediaQuery.of(context).size.width,
+        margin: const EdgeInsets.all(30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Produto: \n ${widget.dados}',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 40),
+            receiveNumber(),
+            SizedBox(height: 40),
+            RaisedButton(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 36),
+              child: Text('Confirmar'),
+              color: Colors.tealAccent,
+              textColor: Colors.black,
+              onPressed: () {
+                sendData();
+              },
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  final numberController = TextEditingController();
+
+  Widget receiveNumber() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Quantidade:',
+            style: TextStyle(fontSize: 20),
+          ),
+          TextField(
+            controller: numberController,
+            decoration: InputDecoration(
+              hintText: 'Quantidade',
+              border: OutlineInputBorder(),
+            ),
+            keyboardType: TextInputType.number,
+          ),
+        ],
+      );
+
+  void sendData() {
+    //Mandar dados para Mensageria
+    print("Enviar dados para mensageria");
   }
 }

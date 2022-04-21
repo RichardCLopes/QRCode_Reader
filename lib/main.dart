@@ -15,6 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'QRCode Reader',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.grey[900],
         elevatedButtonTheme: ElevatedButtonThemeData(
