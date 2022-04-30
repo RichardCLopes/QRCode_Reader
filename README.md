@@ -23,7 +23,7 @@
 Este repositório é responsável pelo aplicativo, sendo o leitor de QR-Code dos produtos ingressantes no almoxarifado.
 
 ## Outros Repositórios
-* [Banco de dados](https://github.com/alcidesbeato/Redes-Banco)
+* [Banco de dados](https://github.com/alcidesbeato/Redes-backend)
 * [Documentação](https://github.com/h-ssiqueira/Supermercado)
 * [Sistemas web](https://github.com/alcidesbeato/Sistema-web-Almoxarifado)
 
