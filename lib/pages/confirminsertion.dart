@@ -24,7 +24,7 @@ class _ConfirmInsertionState extends State<ConfirmInsertion> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Produto: \n ${widget.dados}',
+              'Produto: \n\n${widget.dados}',
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 40),
