@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'confirminsertion.dart';
+import 'package:leitor_qrcode/function/PostFlask.dart';
 
 class QRCodePage extends StatefulWidget {
   QRCodePage({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class QRCodePage extends StatefulWidget {
 }
 
 class _QRCodePageState extends State<QRCodePage> {
+  
   String ticket = '';
 
   readQRCode() async {
@@ -46,6 +48,11 @@ class _QRCodePageState extends State<QRCodePage> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: autoPost,
+        tooltip: 'TESTE de POST',
+        child: const Icon(Icons.add),
       ),
     );
   }

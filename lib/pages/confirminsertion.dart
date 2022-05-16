@@ -3,6 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:leitor_qrcode/pages/qrcodepage.dart';
 
+import 'package:leitor_qrcode/function/PostFlask.dart';
+
+late My_QrCode myQrCode;
+late String Id;
+late String Produto;
+late String Fabricacao;
+late String Validade;
+late String Lote;
+
 class ConfirmInsertion extends StatefulWidget {
   String dados = '';
 
@@ -15,6 +24,7 @@ class ConfirmInsertion extends StatefulWidget {
 class _ConfirmInsertionState extends State<ConfirmInsertion> {
   @override
   Widget build(BuildContext context) {
+    QuebraDoQrCode(widget.dados.split("\n"));
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: Text('ALMOXARIFADO')),
       body: Container(
@@ -24,7 +34,10 @@ class _ConfirmInsertionState extends State<ConfirmInsertion> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Produto: \n\n${widget.dados}',
+              'Nome: $Produto\n'
+              'Fabricacao: $Fabricacao\n'
+              'Validade: $Validade\n'
+              'Lote: $Lote',
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 40),
@@ -53,10 +66,6 @@ class _ConfirmInsertionState extends State<ConfirmInsertion> {
   Widget receiveNumber() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Quantidade:',
-            style: TextStyle(fontSize: 20),
-          ),
           TextField(
             controller: numberController,
             decoration: InputDecoration(
@@ -71,5 +80,32 @@ class _ConfirmInsertionState extends State<ConfirmInsertion> {
   void sendData() {
     //Mandar dados para Mensageria
     print("Enviar dados para mensageria");
+    QuebraDoQrCode(widget.dados.split("\n"));
+    myQrCode = My_QrCode(Id, Produto, Fabricacao, Validade, Lote,
+        int.parse(numberController.text));
+    postData(myQrCode);
+  }
+
+  void QuebraDoQrCode(List<String> StringQrCode) {
+    print(StringQrCode);
+    for (var i = 0; i < StringQrCode.length; i++) {
+      List<String> newString = StringQrCode[i].split(': ');
+
+      if (newString[0] == 'Id') {
+        Id = newString[1];
+      }
+      if (newString[0] == 'Produto') {
+        Produto = newString[1];
+      }
+      if (newString[0] == 'Fabricacao') {
+        Fabricacao = newString[1];
+      }
+      if (newString[0] == 'Validade') {
+        Validade = newString[1];
+      }
+      if (newString[0] == 'Lote') {
+        Lote = newString[1];
+      }
+    }
   }
 }
